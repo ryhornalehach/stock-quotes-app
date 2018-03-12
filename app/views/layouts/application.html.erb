@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Smart transportation</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <header>
+    <nav class="nav">
+      <div class="nav-wrapper navbar-color">
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="/" class="brand-logo right">Smart</a>
+        <ul class="left hide-on-med-and-down compress">
+          <% if current_user %>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+            <li><%= link_to "Profile", current_user %> </li>
+            <li><%= link_to "Information", information_index_path %> </li>
+            <% if current_user.admin %>
+              <li><%= link_to "All Users List", users_path %></li>
+              <li><%= link_to "Job Applications", jobapplications_path %></li>
+            <% else %>
+              <li><%= link_to "Next clients", pickups_path %> </li>
+            <% end %>
+          <% else %>
+            <li><%=link_to "Sign In", new_user_session_path %></li>
+            <li><%=link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+        <ul class="side-nav flow-text" id="mobile-demo">
+          <% if current_user %>
+            <% if current_user.admin %>
+              <li><%= link_to "All Users List", users_path %></li>
+              <li><%= link_to "Job Applications", jobapplications_path %></li>
+            <% else %>
+              <li><%= link_to "Next clients", pickups_path %> </li>
+            <% end %>
+            <li><%= link_to "Information", information_index_path %> </li>
+            <li><%= link_to "Profile", current_user %> </li>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%=link_to "Sign In", new_user_session_path %></li>
+            <li><%=link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+  <script>
+    $('.button-collapse').sideNav();
+  </script>
+</html>
