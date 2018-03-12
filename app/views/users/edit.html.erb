@@ -61,14 +61,6 @@
 
       <div class="row">
         <div class="col s12">
-          <p>Role of the user:</p>
-          <%= f.label :role, class: 'active' %>
-          <%= f.collection_radio_buttons :role, [ ["driver", "Driver"], ["admin", "Admin"], ["manager", "Manager"] ], :first, :last %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s12">
           <%= f.submit "Update User", class: "btn waves-effect waves-light navbar-color-dark" %>
         </div>
       </div>

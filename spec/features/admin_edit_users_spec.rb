@@ -10,9 +10,9 @@ feature "admin can edit the users info",
 #  [x] If I am not logged in as an admin, I can't visit the list of all users page
 #  [x] If I am logged in as an admin, I can edit the user's information
 
-  xscenario "Admin logs in and visit the users index page" do
+  scenario "Admin logs in and visit the users index page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password", address: '100 Main st.', city: 'Lynn', state: 'MA', zip: '01990', phone: '617-111-2222')
-    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true, role: 'admin')
+    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true)
 
     visit root_path
     first(:link, "Sign In").click
@@ -26,7 +26,7 @@ feature "admin can edit the users info",
     expect(page).to have_content user_1.last_name
   end
 
-  xscenario "Visitor logs in not as admin and visit the users index page" do
+  scenario "Visitor logs in not as admin and visit the users index page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password", address: '100 Main st.', city: 'Lynn', state: 'MA', zip: '01990', phone: '617-111-2222')
 
     visit root_path
@@ -39,9 +39,9 @@ feature "admin can edit the users info",
     expect{ get users_path }.to raise_error(NoMethodError)
   end
 
-  xscenario "Admin logs in and edit the user info" do
+  scenario "Admin logs in and edit the user info" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password", address: '100 Main st.', city: 'Lynn', state: 'MA', zip: '01990', phone: '617-111-2222')
-    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true, role: 'admin')
+    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true)
 
     visit root_path
     first(:link, "Sign In").click
@@ -70,9 +70,9 @@ feature "admin can edit the users info",
     expect(page).to have_content "818-818-8888"
   end
 
-  xscenario "Admin logs in and delete the user" do
+  scenario "Admin logs in and delete the user" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password", address: '100 Main st.', city: 'Lynn', state: 'MA', zip: '01990', phone: '617-111-2222')
-    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true, role: 'admin')
+    admin = User.create(first_name: "Admin", last_name: "Shiny", email: "admin@admin.com", password: "admin123", address: '99 Main st.', city: 'Reading', state: 'CT', zip: '01991', phone: '689-123-5435', admin: true)
 
     visit root_path
     first(:link, "Sign In").click
@@ -84,6 +84,5 @@ feature "admin can edit the users info",
     first(:link, "Delete User").click
 
     expect(page).to have_content "User Deleted"
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 end
