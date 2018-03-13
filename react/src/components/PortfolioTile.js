@@ -13,8 +13,8 @@ const PortfolioTile = props => {
 
   return (
 
-    <div className="col s12 m4 l3">
-        <p className={currentStockColor}>{props.stockName}: ${props.lastCloseValue} {arrow} <button className="red-button" name={props.stockName} onClick={props.handleDeleteSymbol} >Delete</button></p>
+    <div>
+        <li className={currentStockColor}>{props.stockName}: ${props.lastCloseValue} {arrow} <button className="red-button" name={props.stockName} onClick={props.handleDeleteSymbol} >Delete</button></li>
     </div>
   )
 }

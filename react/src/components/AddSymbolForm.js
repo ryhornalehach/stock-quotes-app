@@ -5,7 +5,11 @@ const AddSymbolForm = props => {
 
     return(
       <div>
-          <p>Add new stock to your portfolio</p>
+          <div className="row">
+              <div className="col s12">
+                  <p>Add new stock to your portfolio</p>
+              </div>
+          </div>
           <div className="row">
               <div className="col s12 m6 l4">
                   <label>New stock symbol:</label>
