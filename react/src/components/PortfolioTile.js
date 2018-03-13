@@ -6,7 +6,7 @@ const PortfolioTile = props => {
   if (props.growth == '+') {
     currentStockColor = 'green-text';
     arrow = '⇧';
-  } else if (props.growth == '+') {
+  } else if (props.growth == '-') {
     currentStockColor = 'red-text';
     arrow = '⇩';
   }
