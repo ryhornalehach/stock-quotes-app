@@ -5,16 +5,15 @@ class Api::V1::StockController < ApplicationController
 
   def index
       portfolio = []
-      current_user_portfolio = []
-      if current_user
-          current_user_portfolio = current_user.portfolio.split(",")
+      current_user_portfolio = ''
+      if current_user && (!current_user.portfolio || current_user.portfolio == '')
+          current_user_portfolio = 'empty'
       end
 
-      current_user_portfolio.each do |symbol|
+      current_user.portfolio.split(",").each do |symbol|
           uri = URI.parse("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=#{symbol}&apikey=#{ENV['ALPHAVANTAGE_KEY']}")
           buffer = open(uri).read     # reading the response from external API
           result = JSON.parse(buffer) # parsing the response to JSON
-
           position = {}   # creating an empty hash to store the stock info
           position['stock_name'] = result['Meta Data']['2. Symbol']
           today = Time.now.getlocal('-05:00').to_date.strftime("%Y-%m-%d")      # getting today's date and converting it into string
@@ -30,6 +29,7 @@ class Api::V1::StockController < ApplicationController
           end
 
           portfolio << position  # pushing the stock position to portfolio array
+
       end
 
 
