@@ -69,7 +69,7 @@ class MyCabinet extends Component {
     } else if (this.state.currentUserPortfolio == 'empty') {
         portfolio = 'Your portfolio is currently empty. Please add stock to your portfolio';
     } else {
-        portfolio = 'Loading your portfolio, please wait a second...';
+        portfolio = <p><i className="fa fa-cog fa-lg fa-spin" aria-hidden="true"></i> Loading your portfolio, please wait a second...</p>;
     }
 
     addSymbolForm = <AddSymbolForm
@@ -80,9 +80,17 @@ class MyCabinet extends Component {
 
     return(
       <div>
-        <h4>My portfolio</h4>
-        {addSymbolForm}
-        {portfolio}
+          <div className="row">
+              <div className="col s12">
+                  <h4>My portfolio</h4>
+              </div>
+          </div>
+          {addSymbolForm}
+          <div className="row">
+              <div className="col s12">
+                  <ul>{portfolio}</ul>
+              </div>
+          </div>
       </div>
     )
   }
