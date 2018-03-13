@@ -6,7 +6,7 @@ class Api::V1::PortfolioController < ApplicationController
               data = JSON.parse(request.body.read)
               if data['add']
                   if current_user.portfolio.nil? || current_user.portfolio == ''
-                      current_user.portfolio += "#{data['add']}"
+                      current_user.portfolio = "#{data['add']}"
                       current_user.save!
                   else
                       current_user.portfolio += ",#{data['add']}"

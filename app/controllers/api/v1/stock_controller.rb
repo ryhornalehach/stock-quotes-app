@@ -16,34 +16,30 @@ class Api::V1::StockController < ApplicationController
           position = {}   # creating an empty hash to store the stock info
 
           if result['Error Message']  # if the user entered wrong stock name, it will display the error and ask the user to delete the worng stock
-            position['stock_name'] = symbol
-            position['last_close_value'] = 'Error: Wrong stock, please delete it'
-            position['growth'] = '='
-            portfolio << position
-            break
+              position['stock_name'] = symbol
+              position['last_close_value'] = 'Error: Wrong stock, please delete it'
+              position['growth'] = '='
+              portfolio << position
+              break
           end
 
           position['stock_name'] = result['Meta Data']['2. Symbol']
           last_refreshed = result['Meta Data']['3. Last Refreshed'][0..9]
-          # binding.prye
           last_close_value = result['Monthly Time Series'][last_refreshed]['4. close']   # getting the latest close value for the selected stock
           position['last_close_value'] = last_close_value[0...-2]
           last_open_value = result['Monthly Time Series'][last_refreshed]['1. open']
           if last_close_value > last_open_value
-            position['growth'] = '+'
+              position['growth'] = '+'
           elsif last_close_value < last_open_value
-            position['growth'] = '-'
+              position['growth'] = '-'
           else
-            position['growth'] = '='
+              position['growth'] = '='
           end
 
           portfolio << position  # pushing the stock position to portfolio array
         end
 
       end
-
-
-
 
       render json: { portfolio: portfolio, current_user_portfolio: current_user_portfolio }
   end
