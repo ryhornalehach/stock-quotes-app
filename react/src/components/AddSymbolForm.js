@@ -26,7 +26,7 @@ const AddSymbolForm = props => {
                       type="submit"
                       onClick={props.handleAddNewSymbol}   // using the handler function for submit button
                       className="btn waves-effect waves-light navbar-color-dark"
-                      value="Submit"
+                      value="Add"
                   />
               </div>
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const PortfolioTile = props => {
 
-  let currentStockColor, arrow;
+  let currentStockColor, arrow; // will use this variables to display corresponding arrow for growth and decrease and to assign corresponding color - green or red
   if (props.growth == '+') {
     currentStockColor = 'green-text';
     arrow = '⇧';
