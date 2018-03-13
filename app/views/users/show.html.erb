@@ -10,11 +10,11 @@
     <%else%>
       <div class="row">
         <div class="col s12">
-          <h3>Hello <%= @user.first_name.capitalize %>!</h3>
+          <h4>Hello <%= @user.first_name.capitalize %>!</h4>
           <ul>
-            <li><h5><b>My address:</b> <%= "#{@user.address}, #{@user.city}, #{@user.state}, #{@user.zip}" %></h5></li>
-            <li><h5><b>My phone:</b> <%= @user.phone %></h5></li>
-            <li><h5><b>My email:</b> <%= @user.email %></h5></li>
+            <li><p><b>My address:</b> <%= "#{@user.address}, #{@user.city}, #{@user.state}, #{@user.zip}" %></p></li>
+            <li><p><b>My phone:</b> <%= @user.phone %></p></li>
+            <li><p><b>My email:</b> <%= @user.email %></p></li>
           </ul>
         </div>
       </div>

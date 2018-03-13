@@ -11,21 +11,6 @@
   background: #607D8B;
 }
 
-.card-size {
-  height: 250px;
-}
-
-.map-container {
-  height: 450px;
-  width: 95%;
-  margin: auto;
-  margin-top: 10px;
-}
-
-.large-text {
-  font-size: 140%;
-}
-
 .side-nav li > a {
   color: #039BE5;
 }
@@ -34,47 +19,8 @@
   visibility: hidden;
 }
 
-.white-text a {
-  color: white;
-  text-decoration: underline;
-}
-
-.no-margin {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.input-field {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.form-6 {
-  width: 6REM;
-}
-
-.form-10 {
-  width: 10REM;
-}
-
-.card .card-action {
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-textarea {
-  height: 6rem;
-}
-
 body {
   font-family: 'Raleway', sans-serif;
-}
-
-tr td {
-  white-space: normal;
-}
-
-td {
-  padding: 5px;
 }
 
 .notice {
@@ -85,6 +31,15 @@ td {
   color: #9c0900;
 }
 
-.tomorrow {
-  background-color: #c7c7c7;
+.green-text {
+  color: green;
+}
+
+.red-text {
+  color: red;
+}
+
+.red-button {
+  color: black;
+  background: red;
 }
