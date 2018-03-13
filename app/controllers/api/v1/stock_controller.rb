@@ -8,9 +8,8 @@ class Api::V1::StockController < ApplicationController
       current_user_portfolio = ''
       if current_user && (!current_user.portfolio || current_user.portfolio == '')
           current_user_portfolio = 'empty'
-      end
-
-      current_user.portfolio.split(",").each do |symbol|
+      else
+        current_user.portfolio.split(",").each do |symbol|
           uri = URI.parse("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=#{symbol}&apikey=#{ENV['ALPHAVANTAGE_KEY']}")
           buffer = open(uri).read     # reading the response from external API
           result = JSON.parse(buffer) # parsing the response to JSON
@@ -25,7 +24,8 @@ class Api::V1::StockController < ApplicationController
           end
 
           position['stock_name'] = result['Meta Data']['2. Symbol']
-          last_refreshed = result['Meta Data']['3. Last Refreshed']
+          last_refreshed = result['Meta Data']['3. Last Refreshed'][0..9]
+          # binding.prye
           last_close_value = result['Monthly Time Series'][last_refreshed]['4. close']   # getting the latest close value for the selected stock
           position['last_close_value'] = last_close_value[0...-2]
           last_open_value = result['Monthly Time Series'][last_refreshed]['1. open']
@@ -38,8 +38,10 @@ class Api::V1::StockController < ApplicationController
           end
 
           portfolio << position  # pushing the stock position to portfolio array
+        end
 
       end
+
 
 
 
