@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::PortfolioController, type: :controller do
+RSpec.describe Api::V1::StockController, type: :controller do
 
   let!(:user_1) {User.create(
         first_name: "John", last_name: "Smith", email: "thesmith@yahoo.com",
@@ -10,11 +10,6 @@ RSpec.describe Api::V1::PortfolioController, type: :controller do
         first_name: "Anthony", last_name: "Blah", email: "blah@google.com",
         password: "password", address: '77 Seventh st', city: 'Plymouth',
         state: 'MA', zip: '02450', phone: '215-123-1432', portfolio: 'APPL,MSFT' )}
-  let!(:admin) {User.create(
-        first_name: "Admin", last_name: "Shiny", email: "admin@admin.com",
-        password: "admin123", address: '99 Main st.', city: 'Reading',
-        state: 'CT', zip: '01991', phone: '689-123-5435',
-        admin: true )}
 
 
     describe "PUT#update" do

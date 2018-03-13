@@ -15,7 +15,7 @@ const AddSymbolForm = props => {
                   <label>New stock symbol:</label>
                   <input
                       name='newSymbol'
-                      onChange={props.handleNewSymbolField} // using the handler function for the text fields
+                      onChange={props.handleTextField} // using the handler function for the text fields
                       type='text'
                       value={props.newSymbol}   // getting the value from the state
                   />
