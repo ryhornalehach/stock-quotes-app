@@ -15,11 +15,20 @@ class Api::V1::StockController < ApplicationController
           buffer = open(uri).read     # reading the response from external API
           result = JSON.parse(buffer) # parsing the response to JSON
           position = {}   # creating an empty hash to store the stock info
+
+          if result['Error Message']  # if the user entered wrong stock name, it will display the error and ask the user to delete the worng stock
+            position['stock_name'] = symbol
+            position['last_close_value'] = 'Error: Wrong stock, please delete it'
+            position['growth'] = '='
+            portfolio << position
+            break
+          end
+
           position['stock_name'] = result['Meta Data']['2. Symbol']
-          today = Time.now.getlocal('-05:00').to_date.strftime("%Y-%m-%d")      # getting today's date and converting it into string
-          last_close_value = result['Monthly Time Series'][today]['4. close']   # getting the latest close value for the selected stock
+          last_refreshed = result['Meta Data']['3. Last Refreshed']
+          last_close_value = result['Monthly Time Series'][last_refreshed]['4. close']   # getting the latest close value for the selected stock
           position['last_close_value'] = last_close_value[0...-2]
-          last_open_value = result['Monthly Time Series'][today]['1. open']
+          last_open_value = result['Monthly Time Series'][last_refreshed]['1. open']
           if last_close_value > last_open_value
             position['growth'] = '+'
           elsif last_close_value < last_open_value

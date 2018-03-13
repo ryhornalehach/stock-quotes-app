@@ -83,7 +83,6 @@ class MyCabinet extends Component {
         <h4>My portfolio</h4>
         {addSymbolForm}
         {portfolio}
-        {this.state.currentUserPortfolio}
       </div>
     )
   }
