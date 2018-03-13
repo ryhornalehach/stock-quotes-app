@@ -5,16 +5,21 @@ class Api::V1::PortfolioController < ApplicationController
       if current_user
               data = JSON.parse(request.body.read)
               if data['add']
-                  current_user.portfolio += ",#{data['add']}"
-                  current_user.save!
+                  if current_user.portfolio.nil? || current_user.portfolio == ''
+                      current_user.portfolio += "#{data['add']}"
+                      current_user.save!
+                  else
+                      current_user.portfolio += ",#{data['add']}"
+                      current_user.save!
+                  end
               elsif data['delete']
                   if current_user.portfolio.slice!(",#{data['delete']}")
-                    current_user.save!
+                      current_user.save!
                   elsif current_user.portfolio.slice!("#{data['delete']},")
-                    current_user.save!
+                      current_user.save!
                   else
-                    current_user.portfolio.slice!(data['delete'])
-                    current_user.save!
+                      current_user.portfolio.slice!(data['delete'])
+                      current_user.save!
                   end
               else
 

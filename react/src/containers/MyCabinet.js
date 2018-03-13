@@ -54,7 +54,7 @@ class MyCabinet extends Component {
 
   render() {
     let portfolio, addSymbolForm;
-    if (this.state.portfolio) {
+    if (this.state.portfolio && this.state.portfolio.length != 0) {
         portfolio = this.state.portfolio.map((position) => {
             return (
                 <PortfolioTile
@@ -67,7 +67,7 @@ class MyCabinet extends Component {
             )
         })
     } else if (this.state.currentUserPortfolio == 'empty') {
-        portfolio = 'Please add stock to your portfolio';
+        portfolio = 'Your portfolio is currently empty. Please add stock to your portfolio';
     } else {
         portfolio = 'Loading your portfolio, please wait a second...';
     }
