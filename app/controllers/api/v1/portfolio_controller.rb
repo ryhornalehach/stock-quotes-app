@@ -4,7 +4,7 @@ class Api::V1::PortfolioController < ApplicationController
   def update
       if current_user   # verifying that user is authenticated
               data = JSON.parse(request.body.read)  # reading the request body
-              if data['add']  # this keyword determines if we are adding new item to portfolio or deleting one
+              if data['add'] && data['add'] != '' && data['add'] != ' '  # this keyword determines if we are adding new item to portfolio or deleting one, also checking for the correct request
                   if current_user.portfolio.nil? || current_user.portfolio == '' # need this to properly add new item to portfolio string
                       current_user.portfolio = "#{data['add']}"
                       current_user.save!
